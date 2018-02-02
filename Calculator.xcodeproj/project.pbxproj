@@ -56,6 +56,7 @@
 			children = (
 				4663E90F202454B100337B88 /* ViewController.swift */,
 				4663E911202454B100337B88 /* Main.storyboard */,
+				4663E919202454B100337B88 /* Info.plist */,
 				4663E91F2024561C00337B88 /* Supporting Files */,
 			);
 			path = Calculator;
@@ -67,7 +68,6 @@
 				4663E90D202454B100337B88 /* AppDelegate.swift */,
 				4663E914202454B100337B88 /* Assets.xcassets */,
 				4663E916202454B100337B88 /* LaunchScreen.storyboard */,
-				4663E919202454B100337B88 /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
