@@ -10,10 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var display: UILabel!
+    
     @IBAction func touchDigit(_ sender: UIButton) {
-        if let digit = sender.currentTitle {
-            print("\(digit) was called")
-        }
+        let digit = sender.currentTitle!
+        let textCurrentlyInDisplay = display!.text!
+        display!.text = textCurrentlyInDisplay + digit
     }
     
 }
