@@ -47,12 +47,24 @@ struct CalculatorBrain {
                     accumulator = function(accumulator!)
                 }
             case .binaryOperation(let function):
-                break
+                if accumulator != nil {
+                    pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
+                    accumulator = nil
+                }
             case .equals:
-                break
+                performPendingBinaryOperation()
             }
         }
     }
+    
+    private mutating func performPendingBinaryOperation() {
+        if (pendingBinaryOperation != nil) && (accumulator != nil) {
+            accumulator = pendingBinaryOperation!.perform(with: accumulator!)
+            pendingBinaryOperation = nil
+        }
+    }
+    
+    private var pendingBinaryOperation: PendingBinaryOperation?
     
     private struct PendingBinaryOperation {
         let function: (Double,Double) -> Double
