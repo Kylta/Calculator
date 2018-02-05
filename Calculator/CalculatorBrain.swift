@@ -12,6 +12,10 @@ func changedSign(operand: Double) -> Double {
     return -operand
 }
 
+func multiply(op1: Double, op2: Double) -> Double {
+    return op1 * op2
+}
+
 struct CalculatorBrain {
     
     private var accumulator: Double?
@@ -19,6 +23,8 @@ struct CalculatorBrain {
     private enum Operation {
         case constant(Double)
         case unaryOperation((Double) -> Double)
+        case binaryOperation((Double,Double) -> Double)
+        case equals
     }
     
     private var operations: Dictionary<String,Operation> = [
@@ -27,6 +33,8 @@ struct CalculatorBrain {
         "√" : Operation.unaryOperation(sqrt),
         "cos" : Operation.unaryOperation(cos),
         "±" : Operation.unaryOperation(changedSign),
+        "x" : Operation.binaryOperation(multiply),
+        "=" : Operation.equals
     ]
     
     mutating func performOperation(_ symbol: String) {
@@ -38,6 +46,10 @@ struct CalculatorBrain {
                 if accumulator != nil {
                     accumulator = function(accumulator!)
                 }
+            case .binaryOperation(let function):
+                break
+            case .equals:
+                break
             }
         }
     }
