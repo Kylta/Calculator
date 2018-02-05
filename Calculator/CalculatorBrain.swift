@@ -8,14 +8,6 @@
 
 import Foundation
 
-func changedSign(operand: Double) -> Double {
-    return -operand
-}
-
-func multiply(op1: Double, op2: Double) -> Double {
-    return op1 * op2
-}
-
 struct CalculatorBrain {
     
     private var accumulator: Double?
@@ -32,8 +24,11 @@ struct CalculatorBrain {
         "e" : Operation.constant(M_E),
         "√" : Operation.unaryOperation(sqrt),
         "cos" : Operation.unaryOperation(cos),
-        "±" : Operation.unaryOperation(changedSign),
-        "x" : Operation.binaryOperation(multiply),
+        "±" : Operation.unaryOperation({ -$0 }),
+        "x" : Operation.binaryOperation({ $0 * $1 }),
+        "÷" : Operation.binaryOperation({ $0 / $1 }),
+        "+" : Operation.binaryOperation({ $0 + $1 }),
+        "-" : Operation.binaryOperation({ $0 - $1 }),
         "=" : Operation.equals
     ]
     
