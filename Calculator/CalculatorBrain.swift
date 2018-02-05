@@ -54,6 +54,15 @@ struct CalculatorBrain {
         }
     }
     
+    private struct PendingBinaryOperation {
+        let function: (Double,Double) -> Double
+        let firstOperand: Double
+        
+        func perform(with secondOperand: Double) -> Double {
+            return function(firstOperand, secondOperand)
+        }
+    }
+    
     mutating func setOperand(_ operand: Double) {
         accumulator = operand
     }
